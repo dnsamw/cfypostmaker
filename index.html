@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>ChordifyLK Post Maker v1.0</title>
+  </head>
+  <body>
+    <ul>
+      <li><a href="#home">ChordifyLK Post Maker</a></li>
+      <li style="float: right">
+        <a
+          class="active"
+          href="https://chordifylk.blogspot.com/"
+          target="_blank"
+          >Site</a
+        >
+      </li>
+    </ul>
+    <div class="main">
+      <div id="song-details">
+        <form action="/action_page.php">
+          <label for="song">Song Title</label>
+          <input
+            type="text"
+            id="song"
+            name="songname"
+            placeholder="Ananthayata yana para dige.."
+            required
+          />
+
+          <label for="artist">Artist Name</label>
+          <input
+            type="text"
+            id="artist"
+            name="artistname"
+            placeholder="Kasun Kalhara"
+            required
+          />
+
+          <label for="key">Key</label>
+          <select id="key" name="key">
+            <option value="A">A</option>
+            <option value="A">A#</option>
+            <option value="Bb">Bb</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="C#">C#</option>
+            <option value="Db">Db</option>
+            <option value="D">D</option>
+            <option value="D#">D#</option>
+            <option value="Eb">Eb</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="F#">F#</option>
+            <option value="Gb">Gb</option>
+            <option value="G">G</option>
+            <option value="G#">G#</option>
+            <option value="Ab">Ab</option>
+          </select>
+
+          <label for="beat">Beat</label>
+          <select id="beat" name="beat">
+            <option value="4-4">4/4</option>
+            <option value="6-8">6/8</option>
+            <option value="3-4">3/4</option>
+            <option value="3-4">2/4</option>
+            <option value="6-8">7/8</option>
+            <option value="bosanova">Bosa Nova</option>
+            <option value="reggae">reggae</option>
+          </select>
+
+          <input type="button" value="Create" onclick="createFunc()" />
+          <input type="button" value="Copy" onclick="copyFunc()" />
+        </form>
+      </div>
+      <div id="chordsheet">
+        <textarea
+          name="chords"
+          id="chords"
+          cols="30"
+          rows="32"
+          placeholder="Enter guitar chords here.."
+        ></textarea>
+      </div>
+    </div>
+
+    <script>
+      function createFunc() {
+        let song_name = document.getElementById("song").value;
+        let artist_name = document.getElementById("artist").value;
+        let key_name = document.getElementById("key").value;
+        let beat_name = document.getElementById("beat").value;
+        let chords = document.getElementById("chords").value;
+
+        let seo_paragraph = `<p>${song_name} chords by ${artist_name}. The song key : ${key_name} ( You can play tabs using chord diagrams, transpose the key). Learn to play other Guitar chords and tabs by ${artist_name}</p> \n\n`;
+        let table_content = `<table><tr><td>Artist </td> <td>   -  ${artist_name} <i>(<a href="https://chordifylk.blogspot.com/search/label/${artist_name}">View All Songs</a>)</i></td></tr><tr><td>Song   </td> <td>   -  ${song_name} </td></tr><tr><td>Key </td> <td>  -  ${key_name} </td></tr><tr><td>Beat </td> <td>  -  ${beat_name} </td></tr><tr><td>Midi File </td> <td>   -  <i>unavailable</i> </td></tr><tr><td>Backing Track </td> <td>   -  <i>unavailable</i> </td></tr></table> \n\n`;
+        let switch_html = `<div><label class="switch"><input type="checkbox" onclick="boxChecked();" /><span class="slider round"></span></label> <p>Use the switch if you are not familiar with chord positions.</p></div><div id="chords-wrapper"></div> \n\n`;
+        let chord_content = `<pre data-key="${key_name}">${chords}</pre>`;
+
+        let content =
+          seo_paragraph + table_content + switch_html + chord_content;
+        document.getElementById("chords").value = content;
+      }
+
+      function copyFunc() {
+        /* Get the text field */
+        var copyText = document.getElementById("chords");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        navigator.clipboard.writeText(copyText.value);
+
+        /* Alert the copied text */
+        alert("Copied to clipboard");
+      }
+    </script>
+  </body>
+</html>

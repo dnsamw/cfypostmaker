@@ -85,6 +85,7 @@
         </form>
       </div>
       <div id="chordsheet">
+        <span id="clear-btn" onclick="clearText()">Clear Text</span>
         <textarea
           name="chords"
           id="chords"
@@ -96,6 +97,9 @@
     </div>
     <div id="preview"></div>
     <script>
+      function clearText() {
+        document.getElementById("chords").value = "";
+      }
       function createFunc() {
         let song_name = document.getElementById("song").value;
         let artist_name = document.getElementById("artist").value;

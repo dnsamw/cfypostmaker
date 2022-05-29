@@ -178,8 +178,9 @@
         let a5 = a4.replaceAll(/<span class=cho_verse>/gi, "");
         let a6 = a5.replaceAll(/<span class=chostuff>/gi, "");
         let a7 = a6.replaceAll(/<span class=cho_instrumental>/gi, "");
-        let a8 = a7.replaceAll(/<span id=NewBetweenAdsPosition>/gi, "");
-        let b = a8.replaceAll(/www.chordzone.org/gi, "");
+        let a8 = a7.replaceAll(/<span class=cho_bridge>/gi, "");
+        let a9 = a8.replaceAll(/<span id=NewBetweenAdsPosition>/gi, "");
+        let b = a9.replaceAll(/www.chordzone.org/gi, "");
         document.getElementById("chords").value = b;
       }
     </script>

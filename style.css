@@ -87,3 +87,7 @@ ul {
   #clear-btn:hover{
     background-color: rgb(0, 0, 0);
   }
+
+  .logo-sm{
+    height: 30px;
+  }
